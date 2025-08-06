@@ -5,6 +5,7 @@
 //  Created by Rao Uvais khan on 06/08/25.
 //
 
+import SwiftUI
 
 struct ChatBubbleShape: Shape {
     var isFromUser: Bool

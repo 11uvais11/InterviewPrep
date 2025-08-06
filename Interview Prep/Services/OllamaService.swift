@@ -18,7 +18,7 @@ final class OllamaService {
 
     private init() {}
 
-    func generateResponse(for prompt: String, model: String = "llama3") async throws -> String {
+    func generateResponse(for prompt: String, model: String = "mistral:instruct") async throws -> String {
         let requestPayload: [String: Any] = [
             "model": model,
             "prompt": prompt,

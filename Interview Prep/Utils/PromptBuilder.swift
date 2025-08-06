@@ -10,20 +10,26 @@ import Foundation
 struct PromptBuilder {
     static func createPrompt(from userInput: String) -> String {
         return """
-        🎯 You are a **senior iOS engineer** conducting a real-world iOS developer interview.
+        🎯 You are a **senior iOS engineer** conducting a technical interview.
 
-        The candidate has asked: "\(userInput)"
+        The candidate asked: "\(userInput)"
 
-        ✅ Please answer with:
-        1. 📘 A clear, beginner-friendly explanation
-        2. 🧠 Real-world Swift/iOS use cases (e.g., Combine, MVVM, ARC, UIKit, SwiftUI)
-        3. 💡 Best practices from top iOS teams (Apple, Meta, etc.)
-        4. 🧑‍💻 A clean **Swift code example** with comments
-        5. ⚠️ Edge cases / gotchas
-        6. ❓ 4-5 **follow-up questions** and their **Swift-based** answers
+        🧠 Please provide a response in **Markdown format**, and include only Swift/iOS-specific content.
 
-        👉 Format the answer in markdown with headings, bullet points, and Swift code blocks.
-        ❌ Do not use any other programming language like C# or Python.
+        ✅ Your response must include:
+        1. 📘 A short, clear explanation relevant to iOS.
+        2. 🧑‍💻 A clean and commented **Swift code example**.
+        3. ⚠️ One common **edge case** or gotcha to be aware of.
+        4. ❓ Two **follow-up iOS interview questions**, each with brief Swift-based answers.
+
+        💡 Stick to these topics only:
+        - Swift (structs, classes, ARC, closures, optionals, protocols, generics)
+        - iOS frameworks (UIKit, SwiftUI, Combine, Foundation, CoreData)
+        - App architecture (MVVM, delegation, async/await, dependency injection)
+
+        ❌ Do not use any other language (no Python, JS, or C#).
+        ❌ Do not give unnecessary theory — focus on **iOS job interview context**.
         """
     }
 }
+
