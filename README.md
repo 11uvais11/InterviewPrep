@@ -1,98 +1,83 @@
-# 🎯 AI Interview Prep Coach (iOS + Ollama + LLaMA)
+AI Interview Prep Coach (iOS + SwiftUI + Ollama + Mistral)
+This is a lightweight iOS app built using SwiftUI, MVVM, and Ollama that acts as a local AI-powered interview coach for iOS developers.
+It uses the mistral:instruct model running fully on-device (via Ollama) to generate short, Swift-specific interview answers, complete with code examples, edge cases, and follow-up questions.
 
-This is a lightweight **iOS app built using SwiftUI, MVVM, and Ollama** that simulates a **tech interview coach powered by LLaMA models**. It allows users to ask iOS interview questions and receive high-quality markdown-formatted responses including Swift code, edge cases, follow-up questions, and more!
+Designed for fast, focused interview preparation — no API keys, no cloud dependencies.
+Features
+Ask real iOS interview-style questions (e.g. "What’s the difference between struct and class?")
+Runs locally using Ollama and mistral:instruct
+Clean, reactive UI built using SwiftUI and MVVM
+Answers are always Swift/iOS-specific
+Beautiful Markdown rendering in responses
+Custom chat bubbles and typing animations
+Fast, streaming-free responses with complete offline privacy
+Tech Stack
+Layer	Technology
+Frontend	SwiftUI + MVVM
+State Mgmt	Combine
+LLM Backend	Ollama (local runner)
+Model Used	mistral:instruct
+UI Features	Tail chat bubbles, Typing indicator
+Markdown	Text(.init(markdown))
 
-> 💡 Perfect for brushing up before interviews or learning concepts through interactive Q&A.
+Requirements
+macOS with Xcode 15+
+Swift 5.9 or later
+Ollama installed and running locally
+Model: mistral:instruct (or optionally llama3)
+Port 11434 must be available on localhost
 
----
-
-## 🚀 Features
-
-- ✅ Ask questions like “What is the difference between struct and class?”
-- 🤖 Uses local **Ollama** backend with **LLaMA model**
-- 📱 SwiftUI interface with smooth UX
-- 📘 Rich **Markdown support** in answers
-- 🗯️ Beautiful tail chat bubbles
-- ✍️ Typing indicator animation
-- 🧠 Follow-up Q&A coming soon!
-
----
-
-## 📸 Screenshots
-
-| Chat View | Markdown | Typing Indicator |
-|----------|-----------|------------------|
-| ![](./Screenshots/chat.png) | ![](./Screenshots/markdown.png) | ![](./Screenshots/typing.gif) |
-
----
-
-## 🧱 Tech Stack
-
-| Layer      | Tech Used                    |
-|------------|------------------------------|
-| Frontend   | SwiftUI + MVVM               |
-| Backend    | Ollama (running locally)     |
-| Model      | LLaMA 3 (or any other model) |
-| Markdown   | Native SwiftUI `.init(Text)` |
-| Typing     | Custom animation             |
-
----
-
-## 🛠️ Installation
-
-### ✅ Requirements
-
-- macOS with Xcode 15+
-- Swift 5.9+
-- [Ollama installed](https://ollama.com/)
-- LLaMA or any supported model pulled (`ollama pull llama3`)
-- Port **11434** must be available on localhost
-
----
-
-### 📦 Setup Steps
-
-1. **Clone the repo**
-
-```bash
-git clone https://github.com/your-username/InterviewPrepApp-ollama.git
+Installation
+Clone the Repository
+git clone https://github.com/11uvais11/InterviewPrepApp-ollama.git
 cd InterviewPrepApp-ollama
-Install Ollama (if not already)
+Install Ollama
 brew install ollama
-Pull the model
-ollama pull llama3
-Run Ollama in background
-ollama run llama3
-Make sure Ollama is running at http://localhost:11434.
-Open the .xcodeproj or .xcworkspace file
-Run the app on Simulator 📱
-🔌 API Details
-The app sends a POST request to:
+Pull the Model
+ollama pull mistral:instruct
+Run the Model
+ollama run mistral:instruct
+Ollama should now be accessible at http://localhost:11434.
+
+Run the App
+Open InterviewPrepApp-ollama.xcodeproj in Xcode
+Choose a simulator
+Build and run the app
+API Details
+
+The app communicates with the locally running Ollama instance via:
 POST http://localhost:11434/api/generate
-With payload:
+Sample request body:
 {
-  "model": "llama3",
-  "prompt": "Your user question here",
+  "model": "mistral:instruct",
+  "prompt": "What is the difference between struct and class in Swift?",
   "stream": false
 }
-✍️ Custom Prompt Logic
-🎯 You are a senior iOS engineer conducting a real-world iOS developer interview.
+Custom Prompt Logic
+The app uses a structured prompt to simulate a technical interview:
+You are a senior iOS engineer conducting a real-world technical interview.
 
-The candidate has asked: "\(userInput)"
+The candidate asks: "[userInput]"
 
-✅ Please answer with:
-1. 📘 Beginner-friendly explanation
-2. 🧠 Real-world iOS use cases (Swift, MVVM, ARC)
-3. 💡 Best practices
-4. 💻 Swift code sample
-5. ⚠️ Edge cases
-6. ❓ Follow-up questions + Swift answers
-🧪 Coming Soon
-✅ Save chat history
-✅ Dynamic follow-up question handling
-✅ Model switching (CodeLLaMA, Mistral, etc.)
-✅ Voice-based Q&A (AI Speech-to-Text)
-✅ macOS Catalyst support
-🙋‍♂️ Author
-Made by @11uvais11 — iOS dev with a passion for building AI-powered tools, tech+fun content, and grooming 🧠⚙️💈
+Reply with ONLY:
+1. A short iOS-specific explanation
+2. A clean Swift code example with comments
+3. One common edge case or mistake
+4. Two follow-up interview questions with their Swift-based answers
 
+Use only Swift and iOS topics. Format the answer using markdown. Do not include Python or general language content.
+Roadmap
+Save chat history locally
+Dynamic follow-up Q&A flow
+Support for multiple models (LLaMA, CodeLLaMA, etc.)
+Voice-based Q&A with speech-to-text integration
+macOS Catalyst version of the app
+Author
+Uvais Khan
+iOS Developer · Indie Builder · AI Tinkerer
+GitHub · Medium
+Acknowledgments
+Special thanks to the open-source community:
+Ollama — Easy local LLM runner
+mistral:instruct — Lightweight, fast model for local inference
+The Swift & iOS dev community for making building tools a joy
